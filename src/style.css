@@ -1,9 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 #rendererCanvas {
