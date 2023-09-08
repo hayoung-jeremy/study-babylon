@@ -1,6 +1,6 @@
-import { initAudioGalleryScene, initLightScene, initReflectiveScene } from "./journey";
+import { initSpatial3DSoundScene, initLightScene, initReflectiveScene } from "./journey";
 import "./style.css";
 
 // initReflectiveScene();
 // initLightScene();
-initAudioGalleryScene();
+// initSpatial3DSoundScene();
