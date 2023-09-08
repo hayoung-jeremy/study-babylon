@@ -1,4 +1,4 @@
-import { Matrix, MeshBuilder, SpotLight, Vector3 } from "@babylonjs/core";
+import { Color3, Matrix, MeshBuilder, Sound, SpotLight, StandardMaterial, Vector3 } from "@babylonjs/core";
 import { scene } from "./common";
 import { addCircleToScene, addCrossToScene } from "./addGrid";
 
@@ -17,6 +17,15 @@ const initAudioGalleryExample = () => {
   // Set initial position of the sphere
   const initialPosition = new Vector3(10, 0, 0);
   rotatingSphere.position = initialPosition.clone();
+
+  const sound = new Sound("Music", "/sounds/angelical.mp3", scene, null, {
+    autoplay: true,
+    loop: true,
+    spatialSound: true,
+    distanceModel: "linear",
+    maxDistance: 24,
+  });
+  sound.attachToMesh(rotatingSphere);
 
   let counter = 0;
 
