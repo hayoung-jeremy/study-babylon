@@ -1,5 +1,4 @@
-import { MeshBuilder, Vector3, Color3, LinesMesh, Scene, Nullable } from "@babylonjs/core";
-import { scene } from "./common";
+import { MeshBuilder, Vector3, Color3, Scene, Nullable } from "@babylonjs/core";
 
 // Create lines to form a cross at the origin
 const addCrossToScene = (scene: Scene) => {

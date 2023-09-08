@@ -1,31 +1,31 @@
-import * as BABYLON from "@babylonjs/core";
+import { Color3, DirectionalLight, HemisphericLight, Mesh, MeshBuilder, PointLight, SpotLight, Vector3 } from "@babylonjs/core";
 import { scene } from "./common";
 
 const initLightExample = () => {
-  const primitives: BABYLON.Mesh[] = [];
+  const primitives: Mesh[] = [];
 
   for (let i = 0; i < 140; i++) {
-    let sphere = BABYLON.MeshBuilder.CreateSphere("", {}, scene);
-    sphere.position = new BABYLON.Vector3(Math.random() * 20 - 10, Math.random() * 20 - 10, Math.random() * 20 - 10);
+    let sphere = MeshBuilder.CreateSphere("", {}, scene);
+    sphere.position = new Vector3(Math.random() * 20 - 10, Math.random() * 20 - 10, Math.random() * 20 - 10);
     primitives.push(sphere);
   }
 
-  const directionalLight = new BABYLON.DirectionalLight("directionalLight", new BABYLON.Vector3(0, -1, 0), scene);
-  const pointLight = new BABYLON.PointLight("pointLight", new BABYLON.Vector3(0, 0, 0), scene);
-  const hemisphereLight = new BABYLON.HemisphericLight("hemisphericLight", new BABYLON.Vector3(0, 1, 0), scene);
-  const spotLight = new BABYLON.SpotLight(
+  const directionalLight = new DirectionalLight("directionalLight", new Vector3(0, -1, 0), scene);
+  const pointLight = new PointLight("pointLight", new Vector3(0, 0, 0), scene);
+  const hemisphereLight = new HemisphericLight("hemisphericLight", new Vector3(0, 1, 0), scene);
+  const spotLight = new SpotLight(
     "spotLight",
-    new BABYLON.Vector3(0, 10, 0),
-    new BABYLON.Vector3(0, -1, 0),
+    new Vector3(0, 10, 0),
+    new Vector3(0, -1, 0),
     Math.PI / 4,
     1,
     scene
   );
 
-  directionalLight.diffuse = new BABYLON.Color3(1, 0, 0);
-  pointLight.diffuse = new BABYLON.Color3(0, 0, 1);
-  hemisphereLight.diffuse = new BABYLON.Color3(1, 1, 0);
-  spotLight.diffuse = new BABYLON.Color3(0, 1, 0);
+  directionalLight.diffuse = new Color3(1, 0, 0);
+  pointLight.diffuse = new Color3(0, 0, 1);
+  hemisphereLight.diffuse = new Color3(1, 1, 0);
+  spotLight.diffuse = new Color3(0, 1, 0);
 
   const currentLight = document.getElementById("currentLight") as HTMLParagraphElement;
 
@@ -75,7 +75,7 @@ const initLightExample = () => {
     });
 
     if (spotLight.isEnabled()) {
-      spotLight.direction = new BABYLON.Vector3(Math.sin(counter), -1, 0);
+      spotLight.direction = new Vector3(Math.sin(counter), -1, 0);
     }
   });
 };
