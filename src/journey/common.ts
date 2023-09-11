@@ -7,7 +7,7 @@ export const engine = new Engine(canvas, true);
 export const scene = new Scene(engine);
 
 export const camera = new ArcRotateCamera("camera", 1, 1, 20, new Vector3(0, 0, 0), scene);
-camera.position = new Vector3(0, 0, -10);
+camera.position = new Vector3(0, 0, -120);
 camera.attachControl(canvas, true);
 
 engine.runRenderLoop(() => {
