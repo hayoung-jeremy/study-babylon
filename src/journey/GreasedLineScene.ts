@@ -2,15 +2,18 @@ import {
   Color3,
   CreateGreasedLine,
   CreateGround,
+  CreateText,
   CubeTexture,
   GreasedLineMeshColorMode,
   GreasedLineMeshMaterialType,
   GreasedLinePoints,
   GreasedLineTools,
   HemisphericLight,
+  Mesh,
   PBRMaterial,
   Vector3,
 } from "@babylonjs/core";
+import earcut from "earcut";
 
 import { scene } from "./common";
 
@@ -76,6 +79,23 @@ const initGreasedLineScene = () => {
     pbrTint.subSurface.tintColor = new Color3(0.55, 0.55, 0.55);
     pbrTint.emissiveColor = new Color3(0.55, 0.55, 0.55);
     pbrTint.emissiveIntensity = 0.5;
+
+    // Geo Text
+    const geoText = CreateText(
+      "geoText",
+      "Geo Text",
+      font,
+      { size: 8, resolution: 64, depth: 3 },
+      scene,
+      earcut
+    ) as Mesh;
+    geoText.position.y = 34;
+
+    const geoMat = new PBRMaterial("geoMat", scene);
+    geoMat.metallic = 0.9;
+    geoMat.roughness = 0;
+    geoMat.albedoColor = Color3.Yellow();
+    geoText.material = geoMat;
   });
 };
 
