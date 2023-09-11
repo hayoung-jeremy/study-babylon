@@ -62,6 +62,20 @@ const initGreasedLineScene = () => {
     pbrGreasedLine.roughness = 0.4;
     pbrGreasedLine.emissiveColor = Color3.Yellow();
     pbrGreasedLine.emissiveIntensity = 0.5;
+
+    // Tinted Greased Line
+    const greasedLineTintPoints = GreasedLineTools.GetPointsFromText("Tinted Greased Line", 8, 64, font);
+
+    const greasedLineTint = drawText(greasedLineTintPoints);
+    greasedLineTint.position.y = 22;
+    const pbrTint = greasedLineTint.material as PBRMaterial;
+    pbrTint.metallic = 0;
+    pbrTint.roughness = 0;
+    pbrTint.subSurface.isRefractionEnabled = true;
+    pbrTint.subSurface.indexOfRefraction = 1.5;
+    pbrTint.subSurface.tintColor = new Color3(0.55, 0.55, 0.55);
+    pbrTint.emissiveColor = new Color3(0.55, 0.55, 0.55);
+    pbrTint.emissiveIntensity = 0.5;
   });
 };
 
