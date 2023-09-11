@@ -1,10 +1,12 @@
 import {
+  Color3,
   CreateGreasedLine,
   CreateGround,
   CubeTexture,
   GreasedLineMeshColorMode,
   GreasedLineMeshMaterialType,
   GreasedLinePoints,
+  GreasedLineTools,
   HemisphericLight,
   PBRMaterial,
   Vector3,
@@ -48,6 +50,19 @@ const initGreasedLineScene = () => {
     );
     return response.json();
   };
+
+  getFont().then(font => {
+    // GreasedLine
+    const greasedLinePoints = GreasedLineTools.GetPointsFromText("Greased Line", 8, 64, font);
+
+    const greasedLine = drawText(greasedLinePoints);
+    greasedLine.position.y = 10;
+    const pbrGreasedLine = greasedLine.material as PBRMaterial;
+    pbrGreasedLine.metallic = 0.8;
+    pbrGreasedLine.roughness = 0.4;
+    pbrGreasedLine.emissiveColor = Color3.Yellow();
+    pbrGreasedLine.emissiveIntensity = 0.5;
+  });
 };
 
 export default initGreasedLineScene;
