@@ -1,9 +1,12 @@
 import {
+  Camera,
   Color3,
+  Constants,
   CreateGreasedLine,
   CreateGround,
   CreateText,
   CubeTexture,
+  GlowLayer,
   GreasedLineMeshColorMode,
   GreasedLineMeshMaterialType,
   GreasedLinePoints,
@@ -11,6 +14,7 @@ import {
   HemisphericLight,
   Mesh,
   PBRMaterial,
+  SSRRenderingPipeline,
   Vector3,
 } from "@babylonjs/core";
 import earcut from "earcut";
@@ -96,6 +100,27 @@ const initGreasedLineScene = () => {
     geoMat.roughness = 0;
     geoMat.albedoColor = Color3.Yellow();
     geoText.material = geoMat;
+
+    // Glow Layer
+    const glow = new GlowLayer("glow", scene, {
+      blurKernelSize: 128,
+    });
+    glow.intensity = 1;
+    glow.referenceMeshToUseItsOwnMaterial(greasedLine);
+    glow.referenceMeshToUseItsOwnMaterial(greasedLineTint);
+    glow.referenceMeshToUseItsOwnMaterial(geoText);
+
+    // screen space rendering pipeline
+    const ssr = new SSRRenderingPipeline(
+      "ssr",
+      scene,
+      [scene.activeCamera] as Camera[],
+      false,
+      Constants.TEXTURETYPE_UNSIGNED_BYTE
+    );
+    ssr.environmentTexture = scene.environmentTexture as CubeTexture;
+    ssr.strength = 1;
+    ssr.step = 5;
   });
 };
 
